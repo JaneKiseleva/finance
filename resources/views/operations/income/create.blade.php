@@ -1,0 +1,107 @@
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Incomes') }}
+        </h2>
+        <aside class="w-48 flex-shrink-0">
+            <ul class="col2">
+                <li>
+                    <a href="/operations/incomes"
+                       class="{{ request()->is('operations/incomes') ? 'text-blue-500' : '' }}">All Incomes</a>
+                </li>
+
+                <li>
+                    <a href="/operations/income"
+                       class="{{ request()->is('operations/income') ? 'text-blue-500' : '' }}">Edit Income</a>
+                </li>
+
+                <li>
+                    <a href="/operations/income/create"
+                       class="{{ request()->is('operations/income/create') ? 'text-blue-500' : '' }}">New
+                        Income</a>
+                </li>
+            </ul>
+        </aside>
+    </x-slot>
+    <section class="px-6 py-8">
+        <main class="max-w-lg mx-auto mt-10 bg-gray-170 border border-gray-300 p-6 rounded-xl">
+            <h1 class="text-center font-bold text-xl">New income</h1>
+
+            <form method="POST" action="/operations/income" class="mt-10">
+                @csrf
+
+                {{--Name--}}
+                <div class="mt-4">
+                    <x-label for="name" :value="__('Name')"/>
+
+                    <x-input id="name" class="block mt-1 w-full"
+                             type="text"
+                             name="name"
+                             required/>
+                </div>
+
+                {{--Sum--}}
+                <div class="mt-4">
+                    <x-label for="sum" :value="__('Sum')"/>
+
+                    <x-input id="sum" class="block mt-1 w-full"
+                             type="text"
+                             name="sum"
+                             required/>
+                </div>
+
+                {{--Period--}}
+                <div class="mt-4">
+                    <x-label for="period" :value="__('Period')"/>
+
+                    <div class="form-text-container">
+                        <select name="period"
+                                id="period"
+                                class="form-select block mt-1 w-full text-gray-500 border rounded-md shadow-sm border-gray-300
+                            focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                        >
+                            <option value="one-time">one-time</option>
+                            <option value="monthly">monthly</option>
+                        </select>
+                    </div>
+                </div>
+
+                {{--Description--}}
+                <div class="mt-4">
+                    <x-label for="description" :value="__('Description')"/>
+
+                    <x-input id="description" class="block mt-1 w-full"
+                             type="text"
+                             name="description"
+                             required/>
+                </div>
+
+                {{--Buttons--}}
+                <div class="mt-8">
+
+{{--                    <form method="POST" action="/operations/income/{{ $operation->id }}">--}}
+{{--                        @csrf--}}
+{{--                        @method('DELETE')--}}
+{{--                        <button class="text-indigo-600 hover:text-indigo-900">Delete--}}
+{{--                        </button>--}}
+                    {{--ButtonSave--}}
+                    <button type="submit" name="save"
+                            class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500"
+                    >
+                        Save
+                    </button>
+                </div>
+            </form>
+            <br>
+            <td>
+                {{--ButtonCancel--}}
+                <button type="submit" onclick="window.location='{{ route("operations.income") }}'"  name="cancel"
+                        class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500"
+                >
+                    Cancel
+                </button>
+            </td>
+        </main>
+    </section>
+</x-app-layout>
+
