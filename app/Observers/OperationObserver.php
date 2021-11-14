@@ -16,7 +16,7 @@ class OperationObserver
      */
     public function created(Operation $operation)
     {
-//        dispatch(new \App\Jobs\JobOperationCreated($operation));
+        dispatch(new \App\Jobs\JobOperationUpdated($operation));
     }
 
     /**

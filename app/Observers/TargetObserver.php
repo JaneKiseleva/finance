@@ -15,7 +15,7 @@ class TargetObserver
      */
     public function created(Target $target)
     {
-//        dispatch(new \App\Jobs\JobTargetCreated($target));
+        dispatch(new \App\Jobs\JobTarget($target->user_id));
     }
 
     /**
@@ -26,7 +26,7 @@ class TargetObserver
      */
     public function updated(Target $target)
     {
-//        dispatch(new \App\Jobs\JobTargetUpdated($target));
+        dispatch(new \App\Jobs\JobTarget($target->user_id));
     }
 
     /**

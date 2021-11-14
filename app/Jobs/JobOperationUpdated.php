@@ -20,7 +20,6 @@ class JobOperationUpdated implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private Operation $operation;
-//    private Target $target;
 
     /**
      * Create a new job instance.
@@ -30,7 +29,6 @@ class JobOperationUpdated implements ShouldQueue
     public function __construct(Operation $operation)
     {
         $this->operation = $operation;
-//        $this->target = $target;
     }
 
     /**
@@ -75,13 +73,11 @@ class JobOperationUpdated implements ShouldQueue
         $commandCashflow->deleteOldBalance($userId);
         $commandCashflow->insertBalance($cashflow, $allSumIncomes, $allSumExpenditures, $userId);
 
-//        $userId = $this->target->user_id;
-
-//        if(isset($target)) {
-        $allTargets = $commandTarget->getTargets($userId);
-        $collectionsBalance = $commandTarget->getBalance($userId);
-        $resultDate = $commandTarget->getBalanceOnlySum($collectionsBalance, $allTargets);
-        $commandTarget->deleteTarget($userId);
-        $commandTarget->insertEstimatedTimeToReach($allTargets, $resultDate, $userId);}
-//    }
+        $targets = $commandTarget->getTargets($userId);
+        if( $targets != null ) {
+            $collectionsBalance = $commandTarget->getBalance($userId);
+            $resultDate = $commandTarget->getBalanceOnlySum($collectionsBalance, $targets);
+            $commandTarget->insertEstimatedTimeToReach($targets, $resultDate);
+        }
+    }
 }

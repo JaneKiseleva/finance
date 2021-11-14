@@ -2,7 +2,9 @@
 
 namespace App\Jobs;
 
+use App\Models\Cashflow;
 use App\Models\Target;
+use App\Services\CommandCashflow;
 use App\Services\CommandTarget;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -11,20 +13,20 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class JobTargetUpdated implements ShouldQueue
+class JobTarget implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    private Target $target;
+    private int $userId;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Target $target)
+    public function __construct(int $userId)
     {
-        $this->target = $target;
+        $this->userId = $userId;
     }
 
     /**
@@ -34,13 +36,12 @@ class JobTargetUpdated implements ShouldQueue
      */
     public function handle()
     {
-        $userId = $this->target->user_id;
         $commandTarget = resolve(CommandTarget::class);
 
-        $allTargets = $commandTarget->getTargets($userId);
-        $collectionsBalance = $commandTarget->getBalance($userId);
-        $resultDate = $commandTarget->getBalanceOnlySum($collectionsBalance, $allTargets);
-        $commandTarget->deleteTarget($userId);
-        $commandTarget->insertEstimatedTimeToReach($allTargets, $resultDate, $userId);
+            $targets = $commandTarget->getTargets($this->userId);
+            $collectionsBalance = $commandTarget->getBalance($this->userId);
+            $resultDate = $commandTarget->getBalanceOnlySum($collectionsBalance, $targets);
+            $commandTarget->insertEstimatedTimeToReach($targets, $resultDate);
+
     }
 }
