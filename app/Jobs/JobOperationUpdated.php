@@ -49,19 +49,23 @@ class JobOperationUpdated implements ShouldQueue
         if ($this->operation['type'] == 'income') {
             $operationsMonthly = $commandFinalOperationIncomeMonthly->getMonthlyOperations($userId);
             $operationsOneTime = $commandFinalOperationIncomeMonthly->getOneTimeOperations($userId);
-            $date = $commandFinalOperationIncomeMonthly->getFinalArrayOneTimeOperationsIncome($operationsOneTime);
-            $finalArrayOperationsMonthly = $commandFinalOperationIncomeMonthly->getFinalArrayMonthlyOperationsIncome($operationsMonthly, $userId);
-            $commandFinalOperationIncomeMonthly->deleteOldIncomesMonthly($userId);
-            $commandFinalOperationIncomeMonthly->insertFinalOperationsIncomes($finalArrayOperationsMonthly, $operationsOneTime, $date, $userId);
+            if ($operationsMonthly != null or $operationsOneTime != null) {
+                $date = $commandFinalOperationIncomeMonthly->getFinalArrayOneTimeOperationsIncome($operationsOneTime);
+                $finalArrayOperationsMonthly = $commandFinalOperationIncomeMonthly->getFinalArrayMonthlyOperationsIncome($operationsMonthly, $userId);
+                $commandFinalOperationIncomeMonthly->deleteOldIncomesMonthly($userId);
+                $commandFinalOperationIncomeMonthly->insertFinalOperationsIncomes($finalArrayOperationsMonthly, $operationsOneTime, $date, $userId);
+            }
         }
 
         if ($this->operation['type'] == 'expenditure') {
             $operationsMonthly = $commandFinalOperationExpenditureMonthly->getMonthlyOperations($userId);
             $operationsOneTime = $commandFinalOperationExpenditureMonthly->getOneTimeOperations($userId);
-            $date = $commandFinalOperationExpenditureMonthly->getFinalArrayOneTimeOperationsExpenditure($operationsOneTime);
-            $finalArrayOperationsMonthly = $commandFinalOperationExpenditureMonthly->getFinalArrayOperationsExpenditure($operationsMonthly, $userId);
-            $commandFinalOperationExpenditureMonthly->deleteOldExpenditureMonthly($userId);
-            $commandFinalOperationExpenditureMonthly->insertFinalOperationsExpenditure($finalArrayOperationsMonthly, $operationsOneTime, $date, $userId);
+            if ($operationsMonthly != null or $operationsOneTime != null) {
+                $date = $commandFinalOperationExpenditureMonthly->getFinalArrayOneTimeOperationsExpenditure($operationsOneTime);
+                $finalArrayOperationsMonthly = $commandFinalOperationExpenditureMonthly->getFinalArrayOperationsExpenditure($operationsMonthly, $userId);
+                $commandFinalOperationExpenditureMonthly->deleteOldExpenditureMonthly($userId);
+                $commandFinalOperationExpenditureMonthly->insertFinalOperationsExpenditure($finalArrayOperationsMonthly, $operationsOneTime, $date, $userId);
+            }
         }
 
         $collectionsIncomes = $commandCashflow->getIncomes($userId);

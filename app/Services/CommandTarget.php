@@ -51,7 +51,7 @@ class CommandTarget
         //стоимость цели
         foreach ($targets as $target) {
             $target_current_cost = $target->target_current_cost;
-            $resultDate[$target->id] = $newCollectionBalance->where('balance', '>', $target_current_cost)->first();
+            $resultDate[$target->id] = $newCollectionBalance->where('balance', '>=', $target_current_cost)->first();
             if(!isset($resultDate[$target->id])) {
                 $resultDate[$target->id] = [
                     'date' => null,

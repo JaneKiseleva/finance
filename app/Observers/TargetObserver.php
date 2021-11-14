@@ -37,7 +37,6 @@ class TargetObserver
      */
     public function deleted(Target $target)
     {
-
     }
 
     /**

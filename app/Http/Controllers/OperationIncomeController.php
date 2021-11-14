@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RequestOperation;
 use App\Models\Operation;
 use Illuminate\Http\Request;
 
@@ -51,7 +52,6 @@ class OperationIncomeController extends Controller
         $operation->description = request('description');
 
         $operation->save();
-
         return redirect('/operations/income')->with('success', 'Income Update!');
     }
 
