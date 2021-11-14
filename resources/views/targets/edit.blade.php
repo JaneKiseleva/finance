@@ -78,7 +78,7 @@
                 {{--Buttons--}}
                 <div class="mt-8">
                     {{--ButtonSave--}}
-                    <button type="submit"  name="update"
+                    <button type="submit" name="update"
                             class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500"
                     >
                         Update
@@ -88,7 +88,7 @@
             <br>
             <td>
                 {{--ButtonCancel--}}
-                <button type="submit" onclick="window.location='{{ route("target") }}'"  name="cancel"
+                <button type="submit" onclick="window.location='{{ route("target") }}'" name="cancel"
                         class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500"
                 >
                     Cancel

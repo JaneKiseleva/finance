@@ -3,13 +3,13 @@
 namespace App\Services;
 
 use App\Models\Expenditure;
-use App\Models\Income;
 use App\Models\Operation;
+use Carbon\Carbon;
 
 class CommandFinalOperationExpenditureMonthly
 {
     //получаем массив ежемесячных расходов
-    public function getMonthlyOperations($userId): array
+    public function getMonthlyOperations(int $userId): array
     {
         $operationsMonthly = [];
 
@@ -22,11 +22,10 @@ class CommandFinalOperationExpenditureMonthly
         foreach ($operations as $operation) {
             $operationsMonthly[$operation->id] = [
                 'name' => $operation->name,
-                'user_id'=>$userId,
-//                'user_id'=>$operation->user_id,
+                'user_id'=> $userId,
                 'date' => $operation->updated_at,
                 'sum' => $operation->sum,
-                'type' =>$operation->type,
+                'type' => $operation->type,
                 'created_at' => $operation->created_at,
                 'updated_at' => $operation->updated_at,
             ];
@@ -35,7 +34,7 @@ class CommandFinalOperationExpenditureMonthly
     }
 
     //получаем массив разовых расходов
-    public function getOneTimeOperations($userId): array
+    public function getOneTimeOperations(int $userId): array
     {
         $operationsOneTime = [];
 
@@ -48,11 +47,10 @@ class CommandFinalOperationExpenditureMonthly
         foreach ($operations as $operation) {
             $operationsOneTime[$operation->id] = [
                 'name' => $operation->name,
-//                'id'=>$operation->id,
-                'user_id'=>$userId,
+                'user_id'=> $userId,
                 'sum' => $operation->sum,
                 'date' => $operation->updated_at,
-                'type' =>$operation->type,
+                'type' => $operation->type,
                 'created_at' => $operation->created_at,
                 'updated_at' => $operation->updated_at,
             ];
@@ -64,6 +62,7 @@ class CommandFinalOperationExpenditureMonthly
     public function getFinalArrayOneTimeOperationsExpenditure(array $operationsOneTime)
     {
         foreach ($operationsOneTime as $operation) {
+            $operation['date'] = new Carbon();
             $date = $operation['date']->firstOfMonth()->toDate()->format('Y-m-d');
         }
         return $date;
@@ -71,7 +70,7 @@ class CommandFinalOperationExpenditureMonthly
 
 
     //делаем финальный массив со всеми элементами и обновленной датой.
-    public function getFinalArrayOperationsExpenditure(array $operationsMonthly, $userId): array
+    public function getFinalArrayOperationsExpenditure(array $operationsMonthly, int $userId): array
     {
         $operationArrayDate = [];
         $finalArrayOperationsMonthly = [];
@@ -82,7 +81,6 @@ class CommandFinalOperationExpenditureMonthly
         foreach ($operationsMonthly as $operation) {
 
             $operationArrayUserId = array_fill(0, $countTime, $userId);
-//            $operationArrayUserId = array_fill(0, $countTime, $operation['user_id']);
             $operationArrayName = array_fill(0, $countTime, $operation['name']);
             $operationArraySum = array_fill(0, $countTime, $operation['sum']);
             $operationArrayType = array_fill(0, $countTime, $operation['type']);
@@ -96,8 +94,7 @@ class CommandFinalOperationExpenditureMonthly
 
             for ($i = 0; $i < $countTime; $i++) {
                 $finalArrayOperationsMonthly[] = [
-                    'user_id' => $userId,
-//                    'user_id' => $operationArrayUserId[$i],
+                    'user_id' => $operationArrayUserId[$i],
                     'name' => $operationArrayName[$i],
                     'sum' => $operationArraySum[$i],
                     'type' => $operationArrayType[$i],
@@ -112,29 +109,20 @@ class CommandFinalOperationExpenditureMonthly
     }
 
     //удалим предыдущие записи из БД для пользователя
-    public function deleteOldExpenditureMonthly($userId): void
+    public function deleteOldExpenditureMonthly(int $userId): void
     {
         Expenditure::query()
             ->where('user_id', $userId)
             ->delete();
     }
 
-//    //удалим предыдущие записи из БД для пользователя
-//    public function deleteOldExpenditureMonthly(): void
-//    {
-//        Expenditure::query()
-//            ->delete();
-//    }
-
-
     //вставим новые записи для пользователя
-    public function insertFinalOperationsExpenditure(array $finalArrayOperationsMonthly, $operationsOneTime, $date, $userId): void
+    public function insertFinalOperationsExpenditure(array $finalArrayOperationsMonthly, array $operationsOneTime, $date, int $userId): void
     {
         foreach ($finalArrayOperationsMonthly as $operation) {
             Expenditure::query()
                 ->insert([
                     'user_id' => $userId,
-//                    'user_id'=> $operation['user_id'],
                     'name' => $operation['name'],
                     'sum' => $operation['sum'],
                     'date' => $operation['date'],
@@ -148,7 +136,6 @@ class CommandFinalOperationExpenditureMonthly
             Expenditure::query()
                 ->insert([
                     'user_id' => $userId,
-//                    'user_id'=> $operation['user_id'],
                     'name' => $operation['name'],
                     'sum' => $operation['sum'],
                     'date' => $date,

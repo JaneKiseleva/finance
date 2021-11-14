@@ -2,13 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Income extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'user_id',
         'name',
@@ -19,7 +16,4 @@ class Income extends Model
 
     protected $guarded = ['id'];
 
-//    protected $casts = [
-//        'date' => 'date:Y-m-d',
-//    ];
 }

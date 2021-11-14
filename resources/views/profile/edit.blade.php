@@ -14,7 +14,7 @@
 
                 {{--Name--}}
                 <div class="mt-4">
-                    <x-label for="name" :value="__('Name')" />
+                    <x-label for="name" :value="__('Name')"/>
 
                     <x-input id="name" class="block mt-1 w-full"
                              type="text"
@@ -25,7 +25,7 @@
 
                 {{--Email--}}
                 <div class="mt-4">
-                    <x-label for="email" :value="__('Email')" />
+                    <x-label for="email" :value="__('Email')"/>
 
                     <x-input id="email" class="block mt-1 w-full"
                              type="email"
@@ -36,7 +36,7 @@
 
                 {{--Birthday--}}
                 <div class="mt-4">
-                    <x-label for="birthday" :value="__('Birthday')" />
+                    <x-label for="birthday" :value="__('Birthday')"/>
 
                     <x-input id="birthday" class="block mt-1 w-full"
                              type="date"
@@ -50,7 +50,8 @@
                     {{--Confirm Password--}}
                     <div class="mt-8">
                         <a href="/profile/{{ $user->id }}/change"
-                           class=" bg-blue-800 text-white rounded py-2 px-4 {{ request()->is('profile.change-password') ? 'text-blue-500' : '' }}">Change password</a>
+                           class=" bg-blue-800 text-white rounded py-2 px-4 {{ request()->is('profile.change-password') ? 'text-blue-500' : '' }}">Change
+                            password</a>
                         </td>
                     </div>
                 </div>

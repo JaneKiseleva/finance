@@ -47,13 +47,6 @@
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Estimated time to reach
-{{--                                    </th>--}}
-{{--                                    <th scope="col" class="relative px-6 py-3">--}}
-{{--                                        <span class="sr-only">Edit</span>--}}
-{{--                                    </th>--}}
-{{--                                    <th scope="col" class="relative px-6 py-3">--}}
-{{--                                        <span class="sr-only">Delete</span>--}}
-{{--                                    </th>--}}
                                 </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
@@ -75,46 +68,33 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {{ $target->estimated_time_to_reach }}
                                         </td>
-{{--                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">--}}
-{{--                                            <a href="/target/{{ $target->id }}/edit"--}}
-{{--                                               class="text-indigo-600 hover:text-indigo-900">Edit</a>--}}
-{{--                                        </td>--}}
-{{--                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">--}}
-{{--                                            <form method="POST" action="/target/{{ $target->id }}">--}}
-{{--                                                @csrf--}}
-{{--                                                @method('DELETE')--}}
-{{--                                                <button class="text-indigo-600 hover:text-indigo-900">Delete--}}
-{{--                                                </button>--}}
-{{--                                            </form>--}}
-{{--                                        </td>--}}
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
                             <style>
-                                table.text  {
-                                    width:  100%;
+                                table.text {
+                                    width: 100%;
                                     border-spacing: 0;
                                 }
+
                                 table.text td {
                                     width: 50%;
                                     vertical-align: top;
                                 }
+
                                 td.rightcol {
                                     text-align: right;
                                 }
                             </style>
-                            <aside class="px-6 py-6 whitespace-nowrap text-left text-m font-medium text-indigo-600 hover:text-indigo-900">
+                            <aside
+                                class="px-6 py-6 whitespace-nowrap text-left text-m font-medium text-indigo-600 hover:text-indigo-900">
                                 <table class="text">
                                     <tr>
-{{--                                        <td>--}}
-{{--                                            <a href="/target"--}}
-{{--                                               class="{{ request()->is('target') ? 'text-blue-500' : '' }}"><- Go back</a>--}}
-{{--                                        </td>--}}
-
                                         <td class="rightcol">
                                             <a href="/dashboard"
-                                               class="{{ request()->is('dashboard') ? 'text-blue-500' : '' }} ">Dashboard -></a>
+                                               class="{{ request()->is('dashboard') ? 'text-blue-500' : '' }} ">Dashboard
+                                                -></a>
                                         </td>
                                     </tr>
                                 </table>

@@ -20,7 +20,4 @@ class Operation extends Model
 
     protected $guarded = ['id'];
 
-//        protected $casts = [
-//        'updated_at' => 'date:Y-m-d'
-//    ];
 }

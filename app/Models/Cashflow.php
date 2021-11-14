@@ -19,7 +19,4 @@ class Cashflow extends Model
 
     protected $guarded = ['id'];
 
-//    protected $casts = [
-//        'date' => 'date:Y-m-d',
-//    ];
 }

@@ -5,12 +5,11 @@ namespace App\Services;
 use App\Models\Income;
 use App\Models\Operation;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Http;
 
 class CommandFinalOperationIncomeMonthly
 {
     //получаем массив ежемесячных доходов
-    public function getMonthlyOperations($userId): array
+    public function getMonthlyOperations(int $userId): array
     {
         $operationsMonthly = [];
 
@@ -24,7 +23,6 @@ class CommandFinalOperationIncomeMonthly
             $operationsMonthly[$operation->id] = [
                 'name' => $operation->name,
                 'user_id' => $userId,
-//                'user_id' => $operation->user_id,
                 'date' => $operation->updated_at,
                 'sum' => $operation->sum,
                 'type' => $operation->type,
@@ -37,7 +35,7 @@ class CommandFinalOperationIncomeMonthly
     }
 
     //получаем массив разовых доходов
-    public function getOneTimeOperations($userId): array
+    public function getOneTimeOperations(int $userId): array
     {
         $operationsOneTime = [];
 
@@ -51,8 +49,7 @@ class CommandFinalOperationIncomeMonthly
         foreach ($operations as $operation) {
             $operationsOneTime[$operation->id] = [
                 'name' => $operation->name,
-                'user_id'=>$userId,
-//                'user_id' => $operation->user_id,
+                'user_id' => $userId,
                 'date' => $operation->updated_at,
                 'sum' => $operation->sum,
                 'type' => $operation->type,
@@ -74,7 +71,7 @@ class CommandFinalOperationIncomeMonthly
     }
 
 
-    //делаем 'updated_at' => $operationArrayUpdatedAt[$i]      финальный массив со всеми элементами и обновленной датой.
+    //делаем финальный массив со всеми элементами и обновленной датой.
     public function getFinalArrayMonthlyOperationsIncome(array $operationsMonthly, $userId): array
     {
         $operationArrayDate = [];
@@ -86,7 +83,6 @@ class CommandFinalOperationIncomeMonthly
         foreach ($operationsMonthly as $operation) {
 
             $operationArrayUserId = array_fill(0, $countTime, $userId);
-//            $operationArrayUserId = array_fill(0, $countTime, $operation['user_id']);
             $operationArrayName = array_fill(0, $countTime, $operation['name']);
             $operationArraySum = array_fill(0, $countTime, $operation['sum']);
             $operationArrayType = array_fill(0, $countTime, $operation['type']);
@@ -122,23 +118,14 @@ class CommandFinalOperationIncomeMonthly
             ->where('user_id', $userId)
             ->delete();
     }
-//
-//    //удалим предыдущие записи из БД для пользователя
-//    public function deleteOldIncomesMonthly(): void
-//    {
-//        Income::query()
-//            ->delete();
-//    }
-
 
     //вставим новые записи для пользователя
-    public function insertFinalOperationsIncomes(array $finalArrayOperationsMonthly, $operationsOneTime, $date, $userId): void
+    public function insertFinalOperationsIncomes(array $finalArrayOperationsMonthly, array $operationsOneTime, $date, int $userId): void
     {
         foreach ($finalArrayOperationsMonthly as $operation) {
             Income::query()
                 ->insert([
                     'user_id' => $userId,
-//                    'user_id' => $operation['user_id'],
                     'name' => $operation['name'],
                     'sum' => $operation['sum'],
                     'date' => $operation['date'],
@@ -152,7 +139,6 @@ class CommandFinalOperationIncomeMonthly
             Income::query()
                 ->insert([
                     'user_id' => $userId,
-//                    'user_id' => $operation['user_id'],
                     'name' => $operation['name'],
                     'sum' => $operation['sum'],
                     'date' => $date,

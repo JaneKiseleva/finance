@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Models\Cashflow;
 use App\Models\Target;
 
 class TargetObserver

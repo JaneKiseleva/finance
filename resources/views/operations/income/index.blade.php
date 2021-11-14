@@ -85,30 +85,30 @@
                                 </tbody>
                             </table>
                             <style>
-                                table.text  {
-                                    width:  100%;
+                                table.text {
+                                    width: 100%;
                                     border-spacing: 0;
                                 }
+
                                 table.text td {
                                     width: 50%;
                                     vertical-align: top;
                                 }
+
                                 td.rightcol {
                                     text-align: right;
                                 }
                             </style>
-                            <aside class="px-6 py-6 whitespace-nowrap text-left text-m font-medium text-indigo-600 hover:text-indigo-900">
+                            <aside
+                                class="px-6 py-6 whitespace-nowrap text-left text-m font-medium text-indigo-600 hover:text-indigo-900">
                                 <table class="text">
                                     <tr>
-{{--                                    <td>--}}
-{{--                                        <a href="/dashboard"--}}
-{{--                                           class="{{ request()->is('operations/expenditure') ? 'text-blue-500' : '' }}"><- Go back</a>--}}
-{{--                                    </td>--}}
-
-                                <td class="rightcol">
-                                    <a href="/operations/expenditure"
-                                       class="{{ request()->is('operations/expenditure') ? 'text-blue-500' : '' }} ">Next -></a>
-                                </td>
+                                        =
+                                        <td class="rightcol">
+                                            <a href="/operations/expenditure"
+                                               class="{{ request()->is('operations/expenditure') ? 'text-blue-500' : '' }} ">Next
+                                                -></a>
+                                        </td>
                                     </tr>
                                 </table>
                             </aside>

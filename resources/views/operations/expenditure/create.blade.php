@@ -7,7 +7,8 @@
             <ul>
                 <li>
                     <a href="/operations/expenditures"
-                       class="{{ request()->is('operations/expenditures') ? 'text-blue-500' : '' }}">All Expenditures</a>
+                       class="{{ request()->is('operations/expenditures') ? 'text-blue-500' : '' }}">All
+                        Expenditures</a>
                 </li>
 
                 <li>
@@ -89,7 +90,7 @@
             <br>
             <td>
                 {{--ButtonCancel--}}
-                <button type="submit" onclick="window.location='{{ route("operations.expenditure") }}'"  name="cancel"
+                <button type="submit" onclick="window.location='{{ route("operations.expenditure") }}'" name="cancel"
                         class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500"
                 >
                     Cancel

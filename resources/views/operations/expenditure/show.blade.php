@@ -7,7 +7,8 @@
             <ul>
                 <li>
                     <a href="/operations/expenditures"
-                       class="{{ request()->is('operations/expenditures') ? 'text-blue-500' : '' }}">All Expenditures</a>
+                       class="{{ request()->is('operations/expenditures') ? 'text-blue-500' : '' }}">All
+                        Expenditures</a>
                 </li>
 
                 <li>
@@ -23,7 +24,7 @@
             </ul>
         </aside>
     </x-slot>
-    <section class="py-8 max-w-4xl mx-auto">
+    <section class="py-8 max-w-6xl mx-auto">
         <section class="py-8">
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -34,21 +35,11 @@
                                 <tr>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Id
+                                        Date
                                     </th>
                                     <th scope="col"
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Sum
-                                    </th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Date
-                                    </th>
-                                    <th scope="col" class="relative px-6 py-3">
-                                        <span class="sr-only">Edit</span>
-                                    </th>
-                                    <th scope="col" class="relative px-6 py-3">
-                                        <span class="sr-only">Delete</span>
                                     </th>
                                 </tr>
                                 </thead>
@@ -58,56 +49,40 @@
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
                                                 <div class="text-sm font-medium text-gray-900">
-                                                    {{ $expenditure->id }}
+                                                    {{ $expenditure->year }}
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {{ $expenditure->sum }}
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {{ $expenditure->date }}
-                                        </td>
-                                        {{--                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">--}}
-                                        {{--                                            <a href="/operations/income/{{ $operation->id }}/edit"--}}
-                                        {{--                                               class="text-indigo-600 hover:text-indigo-900">Edit</a>--}}
-                                        {{--                                        </td>--}}
-                                        {{--                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">--}}
-                                        {{--                                            <form method="POST" action="/operations/income/{{ $operation->id }}">--}}
-                                        {{--                                                @csrf--}}
-                                        {{--                                                @method('DELETE')--}}
-                                        {{--                                                <button class="text-indigo-600 hover:text-indigo-900">Delete--}}
-                                        {{--                                                </button>--}}
-                                        {{--                                            </form>--}}
-                                        {{--                                        </td>--}}
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
                             <style>
-                                table.text  {
-                                    width:  100%;
+                                table.text {
+                                    width: 100%;
                                     border-spacing: 0;
                                 }
+
                                 table.text td {
                                     width: 50%;
                                     vertical-align: top;
                                 }
+
                                 td.rightcol {
                                     text-align: right;
                                 }
                             </style>
-                            <aside class="px-6 py-6 whitespace-nowrap text-left text-m font-medium text-indigo-600 hover:text-indigo-900">
+                            <aside
+                                class="px-6 py-6 whitespace-nowrap text-left text-m font-medium text-indigo-600 hover:text-indigo-900">
                                 <table class="text">
                                     <tr>
-{{--                                        <td>--}}
-{{--                                            <a href="/operations/expenditure"--}}
-{{--                                               class="{{ request()->is('operations/expenditure') ? 'text-blue-500' : '' }}"><- Go back</a>--}}
-{{--                                        </td>--}}
-
                                         <td class="rightcol">
                                             <a href="/dashboard"
-                                               class="{{ request()->is('dashboard') ? 'text-blue-500' : '' }} ">Dashboard -></a>
+                                               class="{{ request()->is('dashboard') ? 'text-blue-500' : '' }} ">Dashboard
+                                                -></a>
                                         </td>
                                     </tr>
                                 </table>

@@ -2,9 +2,7 @@
 
 namespace App\Observers;
 
-
 use App\Models\Operation;
-use App\Models\Target;
 
 class OperationObserver
 {
@@ -60,6 +58,6 @@ class OperationObserver
      */
     public function forceDeleted(Operation $operation)
     {
-
+        //
     }
 }

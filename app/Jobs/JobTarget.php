@@ -2,9 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Models\Cashflow;
-use App\Models\Target;
-use App\Services\CommandCashflow;
 use App\Services\CommandTarget;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;

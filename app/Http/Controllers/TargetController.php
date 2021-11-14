@@ -39,11 +39,9 @@ class TargetController extends Controller
         ]);
     }
 
-    //получаем все расходы
     public function show() {
         return view('targets.show', [
             'targets' => Target::query()
-//                ->where('user_id', '=', $userId)
                 ->get()
         ]);
     }

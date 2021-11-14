@@ -3,7 +3,6 @@
 namespace App\Jobs;
 
 use App\Models\Operation;
-use App\Models\Target;
 use App\Services\CommandCashflow;
 use App\Services\CommandFinalOperationExpenditureMonthly;
 use App\Services\CommandFinalOperationIncomeMonthly;

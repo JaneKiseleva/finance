@@ -82,14 +82,14 @@
             </form>
             <br>
             <td>
-                    {{--ButtonCancel--}}
-                    <button type="submit" onclick="window.location='{{ route("target") }}'"  name="cancel"
-                            class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500"
-                    >
-                        Cancel
-                    </button>
+                {{--ButtonCancel--}}
+                <button type="submit" onclick="window.location='{{ route("target") }}'" name="cancel"
+                        class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500"
+                >
+                    Cancel
+                </button>
             </td>
-                </div>
+            </div>
             </form>
         </main>
     </section>

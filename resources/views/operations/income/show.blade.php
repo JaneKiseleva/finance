@@ -23,7 +23,7 @@
             </ul>
         </aside>
     </x-slot>
-    <section class="py-8 max-w-4xl mx-auto">
+    <section class="py-8 max-w-6xl mx-auto">
         <section class="py-8">
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -48,28 +48,13 @@
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
                                                 <div class="text-sm font-medium text-gray-900">
-                                                    {{ $income->name }}
+                                                    {{ $income->year }}
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {{ $income->sum }}
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {{ $income->date }}
-                                        </td>
-{{--                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">--}}
-{{--                                            <a href="/operations/income/{{ $operation->id }}/edit"--}}
-{{--                                               class="text-indigo-600 hover:text-indigo-900">Edit</a>--}}
-{{--                                        </td>--}}
-{{--                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">--}}
-{{--                                            <form method="POST" action="/operations/income/{{ $operation->id }}">--}}
-{{--                                                @csrf--}}
-{{--                                                @method('DELETE')--}}
-{{--                                                <button class="text-indigo-600 hover:text-indigo-900">Delete--}}
-{{--                                                </button>--}}
-{{--                                            </form>--}}
-{{--                                        </td>--}}
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -90,11 +75,6 @@
                             <aside class="px-6 py-6 whitespace-nowrap text-left text-m font-medium text-indigo-600 hover:text-indigo-900">
                                 <table class="text">
                                     <tr>
-{{--                                        <td>--}}
-{{--                                            <a href="/operations/income"--}}
-{{--                                               class="{{ request()->is('operations/income') ? 'text-blue-500' : '' }}"><- Go back</a>--}}
-{{--                                        </td>--}}
-
                                         <td class="rightcol">
                                             <a href="/dashboard"
                                                class="{{ request()->is('dashboard') ? 'text-blue-500' : '' }} ">Dashboard -></a>
@@ -108,6 +88,5 @@
             </div>
             </div>
         </section>
-{{--        {{$incomes->links()}}--}}
     </section>
 </x-app-layout>

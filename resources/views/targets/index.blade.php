@@ -44,10 +44,6 @@
                                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Planned date
                                     </th>
-{{--                                    <th scope="col"--}}
-{{--                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">--}}
-{{--                                        Estimated time to reach--}}
-{{--                                    </th>--}}
                                     <th scope="col" class="relative px-6 py-3">
                                         <span class="sr-only">Edit</span>
                                     </th>
@@ -72,9 +68,6 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {{ $target->planned_date }}
                                         </td>
-{{--                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">--}}
-{{--                                            {{ $target->estimated_time_to_reach }}--}}
-{{--                                        </td>--}}
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <a href="/target/{{ $target->id }}/edit"
                                                class="text-indigo-600 hover:text-indigo-900">Edit</a>
@@ -92,29 +85,34 @@
                                 </tbody>
                             </table>
                             <style>
-                                table.text  {
-                                    width:  100%;
+                                table.text {
+                                    width: 100%;
                                     border-spacing: 0;
                                 }
+
                                 table.text td {
                                     width: 50%;
                                     vertical-align: top;
                                 }
+
                                 td.rightcol {
                                     text-align: right;
                                 }
                             </style>
-                            <aside class="px-6 py-6 whitespace-nowrap text-left text-m font-medium text-indigo-600 hover:text-indigo-900">
+                            <aside
+                                class="px-6 py-6 whitespace-nowrap text-left text-m font-medium text-indigo-600 hover:text-indigo-900">
                                 <table class="text">
                                     <tr>
                                         <td>
                                             <a href="/operations/expenditure"
-                                               class="{{ request()->is('operations/expenditure') ? 'text-blue-500' : '' }}"><- Go back</a>
+                                               class="{{ request()->is('operations/expenditure') ? 'text-blue-500' : '' }}"><-
+                                                Go back</a>
                                         </td>
 
                                         <td class="rightcol">
                                             <a href="/dashboard"
-                                               class="{{ request()->is('target') ? 'text-blue-500' : '' }} ">Dashboard -></a>
+                                               class="{{ request()->is('target') ? 'text-blue-500' : '' }} ">Dashboard
+                                                -></a>
                                         </td>
                                     </tr>
                                 </table>

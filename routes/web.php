@@ -28,12 +28,10 @@ Route::get('/', function () {
 
 require __DIR__.'/auth.php';
 
-
 //cashflow
 Route::get('/cashflow', [CashflowController::class, 'index'])->middleware(['auth'])->name('cashflow');
 
 //profile
-
 Route::get('/profile', [UserController::class, 'index'])->middleware(['auth'])->name('profile');
 Route::get('/profile/{user}/edit', [UserController::class, 'edit'])->middleware(['auth']);
 Route::patch('/profile/{user}', [UserController::class, 'update'])->middleware(['auth']);
@@ -71,7 +69,3 @@ Route::patch('/target/{target}', [TargetController::class, 'update'])->middlewar
 Route::delete('/target/{target}', [TargetController::class, 'destroy'])->middleware(['auth']);
 Route::get('/targets', [TargetController::class, 'show'])->middleware(['auth']);
 
-//finalOperation
-
-//Route::get('/final', [FinalOperationController::class, 'monthsOfFiveYear']);
-//Route::get('/final1', [FinalOperationController::class, 'getOperationsIncome']);

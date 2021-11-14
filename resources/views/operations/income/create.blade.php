@@ -78,12 +78,6 @@
 
                 {{--Buttons--}}
                 <div class="mt-8">
-
-{{--                    <form method="POST" action="/operations/income/{{ $operation->id }}">--}}
-{{--                        @csrf--}}
-{{--                        @method('DELETE')--}}
-{{--                        <button class="text-indigo-600 hover:text-indigo-900">Delete--}}
-{{--                        </button>--}}
                     {{--ButtonSave--}}
                     <button type="submit" name="save"
                             class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500"
@@ -95,7 +89,7 @@
             <br>
             <td>
                 {{--ButtonCancel--}}
-                <button type="submit" onclick="window.location='{{ route("operations.income") }}'"  name="cancel"
+                <button type="submit" onclick="window.location='{{ route("operations.income") }}'" name="cancel"
                         class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500"
                 >
                     Cancel
