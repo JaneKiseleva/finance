@@ -3,9 +3,10 @@
 namespace App\Jobs;
 
 use App\Models\Operation;
+use App\Models\Target;
 use App\Services\CommandCashflow;
-use App\Services\CommandFinalOperationExpenditureMonthly;
-use App\Services\CommandFinalOperationIncomeMonthly;
+use App\Services\CommandFinalOperationExpenditureMonthlyCreated;
+use App\Services\CommandFinalOperationIncomeMonthlyCreated;
 use App\Services\CommandTarget;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -14,11 +15,12 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class Job implements ShouldQueue
+class JobOperationCreated implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private Operation $operation;
+//    private Target $target;
 
     /**
      * Create a new job instance.
@@ -28,6 +30,7 @@ class Job implements ShouldQueue
     public function __construct(Operation $operation)
     {
         $this->operation = $operation;
+//        $this->target = $target;
     }
 
     /**
@@ -38,8 +41,8 @@ class Job implements ShouldQueue
     public function handle()
     {
         $userId = $this->operation->user_id;
-        $commandFinalOperationIncomeMonthly = resolve(CommandFinalOperationIncomeMonthly::class);
-        $commandFinalOperationExpenditureMonthly = resolve(CommandFinalOperationExpenditureMonthly::class);
+        $commandFinalOperationIncomeMonthly = resolve(CommandFinalOperationIncomeMonthlyCreated::class);
+        $commandFinalOperationExpenditureMonthly = resolve(CommandFinalOperationExpenditureMonthlyCreated::class);
         $commandCashflow = resolve(CommandCashflow::class);
         $commandTarget = resolve(CommandTarget::class);
 
@@ -71,10 +74,13 @@ class Job implements ShouldQueue
         $commandCashflow->deleteOldBalance($userId);
         $commandCashflow->insertBalance($cashflow, $allSumIncomes, $allSumExpenditures, $userId);
 
-        $allTargets = $commandTarget->getTargets($userId);
-        $collectionsBalance = $commandTarget->getBalance($userId);
-        $resultDate = $commandTarget->getBalanceOnlySum($collectionsBalance, $allTargets);
-        $commandTarget->deleteTarget($userId);
-        $commandTarget->insertEstimatedTimeToReach($allTargets, $resultDate, $userId);
+
+//        if(isset($target)) {
+            $allTargets = $commandTarget->getTargets($userId);
+            $collectionsBalance = $commandTarget->getBalance($userId);
+            $resultDate = $commandTarget->getBalanceOnlySum($collectionsBalance, $allTargets);
+            $commandTarget->deleteTarget($userId);
+            $commandTarget->insertEstimatedTimeToReach($allTargets, $resultDate, $userId);
+//        }
     }
 }

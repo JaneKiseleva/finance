@@ -45,6 +45,7 @@ class CommandTarget
         return $collectionsBalance;
     }
 
+    //рассчитываем месяц исполнения цели
     public function getBalanceOnlySum($collectionsBalance, $allTargets): array
     {
         $resultDate = [];
